@@ -1,0 +1,16 @@
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+.env
+
+# VS Code settings
+.vscode/
+
+# Virtual environment
+venv/
+env/
+
+# Logs and temp files
+*.log
+*.swp
