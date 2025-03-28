@@ -1,0 +1,66 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhan API Authentication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .login-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Login with Dhan</h2>
+    <button class="login-button" onclick="redirectToDhan()">Login with Dhan</button>
+
+    <script>
+        function redirectToDhan() {
+            fetch("/dhan/get-consent-id/")
+            .then(response => response.json())
+            .then(data => {
+                if (data.consent_id) {
+                    let dhanLoginUrl = `https://auth.dhan.co/consent-login?consentId=${data.consent_id}`;
+                    window.location.href = dhanLoginUrl; // Redirect user to Dhan login page
+                } else {
+                    alert("Error generating consent ID");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+
+</body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhan API Authentication</title>
+</head>
+<body>
+    <h2>Login with Dhan</h2>
+    <p>Click the button below to authenticate with Dhan:</p>
+    <a href="{% url 'generate_consent' %}">
+        <button>Login with Dhan</button>
+    </a>
+</body>
+</html>
