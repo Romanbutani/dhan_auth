@@ -28,7 +28,7 @@ def generate_consent(request):
     if response.status_code == 200 and "consentId" in data:
         consent_id = data["consentId"]
         print(f"Generated Consent ID: {consent_id}")  # Print to local terminal
-        dhan_login_url = f"https://auth.dhan.co/partner/consent-login?consentId={consent_id}&redirectUrl={REDIRECT_URL}"
+        dhan_login_url = f"https://auth.dhan.co/consent-login?consentId={consent_id}"
         return redirect(dhan_login_url)  # Step 2: Redirect user to Dhan login
     else:
         print("Error generating consent:", data)  # Print error if any
