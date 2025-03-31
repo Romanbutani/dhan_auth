@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(evlgx2sm%e^5_ldc))i1p17)b3j!mad=o9^#c)&)@l700+=ev'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -127,3 +127,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DHAN_PARTNER_ID = "1106617500"
 DHAN_PARTNER_SECRET = "Roman@3608"
 DHAN_REDIRECT_URL = "http://127.0.0.1:8000/dhan/auth/callback/"
+
+
+import os
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
