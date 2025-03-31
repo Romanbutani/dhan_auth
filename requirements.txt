@@ -23,7 +23,6 @@ click-repl==0.3.0
 colorama==0.4.4
 cryptography==44.0.2
 cssselect==1.2.0
-cupshelpers==1.0
 dbus-python==1.2.18
 decorator==5.2.1
 defer==1.0.6
