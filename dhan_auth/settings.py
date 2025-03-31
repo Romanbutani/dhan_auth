@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(evlgx2sm%e^5_ldc))i1p17)b3j!mad=o9^#c)&)@l700+=ev
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*", "dhan-auth.vercel.app", "127.0.0.1"]
 
 
 # Application definition
@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'dhan_auth.urls'
@@ -116,17 +117,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-DHAN_PARTNER_ID = "1106617500"
-DHAN_PARTNER_SECRET = "Roman@3608"
-DHAN_REDIRECT_URL = "http://127.0.0.1:8000/dhan/auth/callback/"
 
 
 import os
