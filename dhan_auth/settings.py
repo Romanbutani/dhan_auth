@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(evlgx2sm%e^5_ldc))i1p17)b3j!mad=o9^#c)&)@l700+=ev
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*", "dhan-auth.vercel.app", "127.0.0.1"]
+ALLOWED_HOSTS = ["*", "dhan-auth.vercel.app", "127.0.0.1", "i4imerged.uniquefinserve.com"]
 
 
 # Application definition

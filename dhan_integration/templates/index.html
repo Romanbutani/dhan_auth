@@ -1,4 +1,4 @@
-{% comment %} <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,14 +10,24 @@
             text-align: center;
             padding: 50px;
         }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            width: 200px;
+        }
         .login-button {
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 12px 24px;
+            font-size: 18px;
             cursor: pointer;
             border-radius: 5px;
+            transition: 0.3s;
         }
         .login-button:hover {
             background-color: #0056b3;
@@ -27,40 +37,34 @@
 <body>
 
     <h2>Login with Dhan</h2>
+    <p>Select a date range before logging in:</p>
+
+    <div class="input-container">
+        <label for="from_date">From Date:</label>
+        <input type="date" id="from_date" required>
+    </div>
+    
+    <div class="input-container">
+        <label for="to_date">To Date:</label>
+        <input type="date" id="to_date" required>
+    </div>
+
     <button class="login-button" onclick="redirectToDhan()">Login with Dhan</button>
 
     <script>
         function redirectToDhan() {
-            fetch("/dhan/get-consent-id/")
-            .then(response => response.json())
-            .then(data => {
-                if (data.consent_id) {
-                    let dhanLoginUrl = `https://auth.dhan.co/consent-login?consentId=${data.consent_id}`;
-                    window.location.href = dhanLoginUrl; // Redirect user to Dhan login page
-                } else {
-                    alert("Error generating consent ID");
-                }
-            })
-            .catch(error => console.error("Error:", error));
+            let fromDate = document.getElementById("from_date").value;
+            let toDate = document.getElementById("to_date").value;
+
+            if (!fromDate || !toDate) {
+                alert("Please select both dates before proceeding.");
+                return;
+            }
+
+            let url = `{% url 'generate_consent' %}?from_date=${fromDate}&to_date=${toDate}`;
+            window.location.href = url;
         }
     </script>
 
-</body>
-</html> {% endcomment %}
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhan API Authentication</title>
-</head>
-<body>
-    <h2>Login with Dhan</h2>
-    <p>Click the button below to authenticate with Dhan:</p>
-    <a href="{% url 'generate_consent' %}">
-        <button>Login with Dhan</button>
-    </a>
 </body>
 </html>
