@@ -223,7 +223,7 @@ def fetch_trade_data(request):
         print("[ERROR] Missing required parameters")
         return JsonResponse({"error": "Missing required parameters"}, status=400)
 
-    url = f"https://api.dhan.co/v2/trades/{from_date}/{to_date}/1"
+    url = f"https://api.dhan.co/v2/trades/{from_date}/{to_date}/0"
     headers = {
         "Accept": "application/json",
         "access-token": access_token
