@@ -177,6 +177,7 @@ def dhan_callback(request):
 def fetch_access_token(request):
     """ Step 3: Fetch Access Token using Token ID """
     token_id = request.GET.get("tokenId")
+    user_ucc = request.GET.get("user_ucc")
 
     if not token_id:
         print("[ERROR] Token ID is missing")
@@ -201,6 +202,11 @@ def fetch_access_token(request):
     if response.status_code == 200 and "access_token" in data:
         user_id = data.get("userId")
         access_token = data.get("access_token")
+        dhan_ucc = data.get("ucc")
+
+        if dhan_ucc != user_ucc:
+         return JsonResponse({"error": "UCC mismatch! Entered UCC does not match Dhan UCC."}, status=400)
+        
 
         print(f"[SUCCESS] User ID: {user_id}, Access Token: {access_token}")
 
